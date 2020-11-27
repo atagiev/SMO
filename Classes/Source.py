@@ -1,6 +1,6 @@
 from Classes.Time import Time
 from Classes.Request import Request
-from math import exp
+from math import log
 from random import random
 import config
 
@@ -20,4 +20,4 @@ class Source:
         return None
 
     def __calculate_time_for_create(self):
-        return Time.get_current_time() + config.alf * exp(int(random() * -config.alf))
+        return Time.get_current_time() + (-1/config.alf)*log(random())
