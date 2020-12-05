@@ -15,8 +15,10 @@ class Source:
             self.__time_for_create = self.__calculate_time_for_create()
             r = Request(self.__number, Time.get_current_time())
             r.created()
+            Time.upd_time(self.__time_for_create)
             return r
 
+        Time.upd_time(self.__time_for_create)
         return None
 
     def __calculate_time_for_create(self):

@@ -17,6 +17,7 @@ class Worker:
         self.__current_request = request
         self.__time_of_release = self.__calculate_work_time()
         self.__current_request.in_worker(self.__number)
+        Time.upd_time(self.__time_of_release)
 
     def __calculate_work_time(self):
         return Time.get_current_time() + config.lam * exp(int(random() * -config.lam))
@@ -25,3 +26,5 @@ class Worker:
         if Time.get_current_time() >= self.__time_of_release and not self.is_available():
             self.__current_request.leave_worker(self.__number)
             self.__current_request = None
+        elif not self.is_available():
+            Time.upd_time(self.__time_of_release)
