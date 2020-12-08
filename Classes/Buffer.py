@@ -26,9 +26,7 @@ class Buffer:
                     added = True
                     break
 
-        if added:
-            request.in_buffer()
-        else:
+        if not added:
             self.__deny_request(request)
 
     def __deny_request(self, request):
@@ -37,7 +35,6 @@ class Buffer:
             if self.__buffer[i].get_time() < self.__buffer[oldest].get_time():
                 oldest = i
 
-        request.in_buffer()
         self.__buffer[oldest].deny_buffer()
         self.__buffer[oldest] = request
 

@@ -3,3 +3,4 @@ numOfSources = 5
 numOfWorkers = 4
 alf = 0.4
 lam = 10
+auto_mode_steps = 1000

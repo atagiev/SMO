@@ -16,7 +16,7 @@ class Worker:
     def add_request(self, request):
         self.__current_request = request
         self.__time_of_release = self.__calculate_work_time()
-        self.__current_request.in_worker(self.__number)
+        self.__current_request.in_worker(self.__number, self.__time_of_release)
         Time.upd_time(self.__time_of_release)
 
     def __calculate_work_time(self):

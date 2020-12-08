@@ -1,28 +1,35 @@
+from Classes.Time import Time
+
+
 class Request:
-    def __init__(self, num_of_source, create_time):
+    def __init__(self, num_of_source, create_time, stat):
         self.__numOfSource = num_of_source
         self.__time = create_time
+        self.stat = stat
 
     def get_time(self):
         return self.__time
 
     def get_id(self):
-        return str(self.__numOfSource)+","+str(self.__time)
+        return str(self.__numOfSource) + "," + str(self.__time)
 
     def created(self):
-        print("Запрос " + self.get_id() + " создан источником " + str(self.__numOfSource))
-
-    def in_buffer(self):
-        print("Запрос " + self.get_id() + " помещен в буфер")
+        self.stat.created(self.__numOfSource)
 
     def leave_buffer(self):
-        print("Запрос " + self.get_id() + " покинул буфер")
+        self.stat.add_wait_time(self.__numOfSource, Time.get_current_time() - self.__time)
 
-    def in_worker(self, num):
-        print("Запрос " + self.get_id() + " попал в обработку прибором " + str(num))
+    def in_worker(self, num, time):
+        self.stat.add_work_time(self.__numOfSource, time - Time.get_current_time())
+
+        self.stat.add_worker_time(num, Time.get_current_time())
 
     def leave_worker(self, num):
-        print("Запрос " + self.get_id() + " успешно обработан прибором " + str(num))
+        self.stat.add_worker_time2(num, Time.get_current_time())
+
+        self.stat.completed(self.__numOfSource)
+        self.stat.add_all_time(self.__numOfSource, Time.get_current_time() - self.__time)
 
     def deny_buffer(self):
-        print("Запрос " + self.get_id() + " выброшен из буфера")
+        self.stat.denied(self.__numOfSource)
+        self.stat.add_wait_time(self.__numOfSource, Time.get_current_time() - self.__time)
