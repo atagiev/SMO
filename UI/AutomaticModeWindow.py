@@ -116,6 +116,6 @@ class AutomaticModeWindow:
             e0.grid(row=i, column=0)
             v0 = tk.StringVar()
             e0 = tk.Entry(self.window, textvariable=v0, state='readonly')
-            v0.set(self.stat.workers_worked[i - config.numOfSources - 4]/Time.get_current_time())
+            v0.set(str(self.stat.workers_worked[i - config.numOfSources - 4]/Time.get_current_time()*100)[0:5] + "%")
             e0.grid(row=i, column=1)
 
