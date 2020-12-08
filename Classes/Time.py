@@ -15,6 +15,11 @@ class Time:
         return Time.__step
 
     @staticmethod
+    def reset_time():
+        Time.__time = 0
+        Time.__step = 0
+
+    @staticmethod
     def upd_time(time):
         if Time.__next_time == Time.__time:
             Time.__next_time = inf

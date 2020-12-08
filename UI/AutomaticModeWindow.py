@@ -19,6 +19,7 @@ class AutomaticModeWindow:
         self.__create_ui()
 
     def __work_system(self):
+        Time.reset_time()
         buffer = Buffer(config.bufferLength)
         sources = [Source(i, self.stat) for i in range(config.numOfSources)]
         manager1 = Manager1(buffer, sources)

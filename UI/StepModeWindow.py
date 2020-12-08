@@ -18,6 +18,7 @@ class StepModeWindow:
         self.__create_ui()
 
     def __init_system(self):
+        Time.reset_time()
         self.stat = StatCollector()
         self.buffer = Buffer(config.bufferLength)
         self.sources = [Source(i, self.stat) for i in range(config.numOfSources)]
