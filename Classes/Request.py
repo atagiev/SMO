@@ -11,7 +11,7 @@ class Request:
         return self.__time
 
     def get_id(self):
-        return str(self.__numOfSource) + "," + str(self.__time)
+        return str(self.__numOfSource) + ", " + '{:.3f}'.format(self.__time)
 
     def created(self):
         self.stat.created(self.__numOfSource)

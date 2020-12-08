@@ -11,6 +11,10 @@ class Time:
         return Time.__time
 
     @staticmethod
+    def get_current_step():
+        return Time.__step
+
+    @staticmethod
     def upd_time(time):
         if Time.__next_time == Time.__time:
             Time.__next_time = inf

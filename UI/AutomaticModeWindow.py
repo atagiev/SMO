@@ -12,13 +12,13 @@ import tkinter as tk
 class AutomaticModeWindow:
     def __init__(self):
         self.stat = StatCollector()
-        self.work_system()
+        self.__work_system()
         self.window = tk.Toplevel()
         self.window.grab_set()
         self.window.title("Automatic mode")
         self.__create_ui()
 
-    def work_system(self):
+    def __work_system(self):
         buffer = Buffer(config.bufferLength)
         sources = [Source(i, self.stat) for i in range(config.numOfSources)]
         manager1 = Manager1(buffer, sources)
